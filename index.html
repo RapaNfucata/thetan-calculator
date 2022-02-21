@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link
+      rel="apple-touch-icon"
+      sizes="57x57"
+      href="images/icon/apple-icon-57x57.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="60x60"
+      href="images/icon/apple-icon-60x60.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="72x72"
+      href="images/icon/apple-icon-72x72.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="76x76"
+      href="images/icon/apple-icon-76x76.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="images/icon/apple-icon-114x114.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="images/icon/apple-icon-120x120.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="images/icon/apple-icon-144x144.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="images/icon/apple-icon-152x152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="images/icon/apple-icon-180x180.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="images/icon/android-icon-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="images/icon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="images/icon/favicon-96x96.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="images/icon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="msapplication-TileColor" content="#140933" />
+    <meta
+      name="msapplication-TileImage"
+      content="images/icon/ms-icon-144x144.png"
+    />
+    <meta name="theme-color" content="#140f39" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thetan Hero Calculator</title>
+    <link rel="stylesheet" href="stile.css" />
+  </head>
+  <body>
+    <div class="mainContainer">
+      <div class="mainLayout noStyle flexCenter column">
+        <h1 style="text-align: center">Thetan Hero Calculator</h1>
+        <div class="resultLabel">
+          <div class="thc"></div>
+          <h3>1 THC = <span id="priceOfTHC"></span> USD</h3>
+        </div>
+        <div class="resultLabel">
+          <h3><span id="totalPlayers"></span> players</h3>
+        </div>
+
+        <div class="resultLabel">
+          <div style="min-width: 300px;" class="mainLayout column flexSpace marginTop30 maxWidth350">
+            <div class="input" style="width: 250px; max-width: none;">
+              <input
+                style="padding: 0 40px 0 15px; font-size: 16px; max-width: none"
+                type="text"
+                id="urlHero"
+              />
+              <div class="inputLabel ics" id="ics"></div>
+            </div>
+            <div class="label">
+              <h3 style="text-align: center">URL Personaggio</h3>
+              <h3 style="text-align: center" id="buyType"></h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mainLayout alignEnd flexCenter marginTop10 column">
+        <div class="avatar" id="avatar"></div>
+        <h2 style="margin: 0" id="heroName">Personaggio</h2>
+        <h4 style="margin: 0" id="heroSkin"></h4>
+      </div>
+      <div class="mainLayout flexSpace marginTop10 maxWidth350">
+        <div class="input">
+          <input type="text" id="costoPersonaggio" />
+          <div class="inputLabel thc"></div>
+        </div>
+        <div class="label"><h3>Costo*</h3></div>
+      </div>
+      <!--
+      <div class="mainLayout flexSpace marginTop10 maxWidth350">
+        <div class="input">
+          <select name="rarityCharacter" id="raritaPersonaggio">
+            <option value="common">Comune</option>
+            <option value="rare">Raro</option>
+            <option value="legendary">Leggendario</option>
+          </select>
+        </div>
+        <div class="label"><h3>Rarità Personaggio</h3></div>
+      </div>
+      <div class="mainLayout flexSpace marginTop10 maxWidth350">
+        <div class="input">
+          <select name="raritySkin" id="raritaSkin">
+            <option value="common">Comune</option>
+            <option value="rare">Raro</option>
+            <option value="legendary">Leggendario</option>
+          </select>
+        </div>
+        <div class="label"><h3>Rarità Skin</h3></div>
+      </div>
+    -->
+      <div class="mainLayout flexSpace marginTop10 maxWidth350">
+        <div class="input">
+          <input type="text" id="battaglieTotali" />
+          <div class="inputLabel">BTL</div>
+        </div>
+        <div class="label"><h3>Battaglie Totali*</h3></div>
+      </div>
+      <div class="mainLayout flexSpace marginTop10 maxWidth350">
+        <div class="input">
+          <input type="text" id="battaglieBruciate" />
+          <div class="inputLabel">BTL</div>
+        </div>
+        <div class="label"><h3>Battaglie Bruciate</h3></div>
+      </div>
+      <div class="mainLayout flexSpace marginTop30 maxWidth350">
+        <div class="input">
+          <input type="text" id="battaglieGiorno" />
+          <div class="inputLabel">BTL</div>
+        </div>
+        <div class="label"><h3>Daily Battles*</h3></div>
+      </div>
+      <!--       <div class="mainLayout flexSpace marginTop10 maxWidth350">
+        <div class="input">
+          <input type="text" id="thcVittoria" />
+          <div class="inputLabel thc"></div>
+        </div>
+        <div class="label"><h3>THC Per Vittoria*</h3></div>
+      </div> -->
+      <div class="mainLayout flexSpace marginTop10 maxWidth350">
+        <div class="input">
+          <input type="text" id="thcBonus" />
+          <div class="inputLabel thc"></div>
+        </div>
+        <div class="label"><h3>Bonus THC</h3></div>
+      </div>
+
+      <div class="mainLayout alignEnd flexCenter marginTop30">
+        <h2>Partite</h2>
+      </div>
+      <div class="mainLayout flexAround maxWidth350 marginTop10">
+        <div id="team" class="selected">TEAM</div>
+        <label class="switch">
+          <input id="teamOrRoyal" type="checkbox" />
+          <span class="slider round"></span>
+        </label>
+        <div id="royal">ROYAL</div>
+      </div>
+      <div class="mainLayout flexSpace marginTop10 maxWidth350">
+        <div class="input">
+          <input id="giornateGioco" type="text" />
+          <div class="inputLabel">DAY</div>
+        </div>
+        <div class="label"><h3>Giorni di Gioco</h3></div>
+      </div>
+      <div class="mainLayout flexSpace marginTop10 maxWidth350">
+        <div class="input">
+          <input id="battaglieFatte" type="text" />
+          <div class="inputLabel">BTL</div>
+        </div>
+        <div class="label"><h3>Battaglie Fatte</h3></div>
+      </div>
+      <div class="mainLayout flexSpace marginTop10 maxWidth350">
+        <div class="input">
+          <input id="vittorie" type="text" />
+          <div class="inputLabel">WIN</div>
+        </div>
+        <div class="label winLabel">
+          <div class="multyplierButton">
+            <button id="divisoDue" style="margin-bottom: 5px;">/2</button> <button id="perDue">X2</button>
+          </div>
+          <h3 style="margin-left: 10px">Vittorie</h3>
+        </div>
+      </div>
+
+      <div class="mainLayout alignEnd flexCenter marginTop30">
+        <h2>GUADAGNI</h2>
+      </div>
+      <div class="mainLayout flexSpace marginTop10 maxWidth350">
+        <div><h3>Battaglie all'Acquisto</h3></div>
+        <div><h3 id="battaglieAcquisto">0 BTL</h3></div>
+      </div>
+      <div class="mainLayout flexSpace marginTop10 maxWidth350">
+        <div><h3>Battaglie Rimanenti</h3></div>
+        <div><h3 id="battaglieRimanenti">0 BTL</h3></div>
+      </div>
+      <div class="mainLayout flexSpace marginTop10 maxWidth350">
+        <div><h3>Giorni di Battaglia</h3></div>
+        <div><h3 id="giorniDiBattaglia">0 DAY</h3></div>
+      </div>
+      <div class="mainLayout flexSpace marginTop10 maxWidth350">
+        <div><h3>Guadagno Potenziale</h3></div>
+        <div class="resultLabel">
+          <div class="guadagnoLabel">
+            <h3 id="guadagnoPotenziale">0 THC</h3>
+            <div class="usd" id="guadagnoPotenzialeUSD">0.00 USD</div>
+          </div>
+          <div class="thc"></div>
+        </div>
+      </div>
+      <div class="mainLayout flexSpace marginTop10 maxWidth350">
+        <div><h3>Profitto Potenziale</h3></div>
+        <div class="resultLabel">
+          <div class="guadagnoLabel">
+            <h3 id="profittoPotenziale">0 THC</h3>
+            <div class="usd" id="profittoPotenzialeUSD">0.00 USD</div>
+          </div>
+          <div class="thc"></div>
+        </div>
+      </div>
+      <div class="mainLayout flexSpace marginTop10 maxWidth350">
+        <div><h3>Guadagno Reale</h3></div>
+        <div class="resultLabel">
+          <div class="guadagnoLabel">
+            <h3 id="guadagnoReale">0 THC</h3>
+            <div class="usd" id="guadagnoRealeUSD">0.00 USD</div>
+          </div>
+          <div class="thc"></div>
+        </div>
+      </div>
+      <div class="mainLayout flexSpace marginTop10 maxWidth350">
+        <div><h3>Profitto Reale</h3></div>
+        <div class="resultLabel">
+          <div class="guadagnoLabel">
+            <h3 id="profittoReale">0 THC</h3>
+            <div class="usd" id="profittoRealeUSD">0.00 USD</div>
+          </div>
+          <div class="thc"></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <div class="footerText">
+        <strong>v 1.1.4</strong>
+      </div>
+      <div class="footerText">
+        Questo è un servizio totalmente gratuito, senza ADs, pubblicità o altro!
+        Se avete voglia di supportare il mio lavoro potete offrire un caffè ai
+        miei Thetan Character
+      </div>
+      <button class="footerButton" id="offriuncaffe">
+        Offri un caffè ai miei Thetan Character
+      </button>
+    </div>
+    <div class="calcola"><button id="bottoneCalcola">CALCOLA</button></div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script src="script.js"></script>
+    <!--     <script>
+      $.get(
+        "https://sandbox-api.coinmarketcap.com/v1/cryptocurrency/listings/latest",
+        {
+          headers: {
+            "X-CMC_PRO_API_KEY": "b54bcf4d-1bca-4e8e-9a24-22ff2c3d462c",
+          },
+        },
+        function (data) {
+          alert(data);
+        }
+      );
+    </script> -->
+  </body>
+</html>
