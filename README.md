@@ -4,30 +4,30 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
-In the project directory, you can run:
+Nella cartella principale del proggetto puoi eseguire:
 
 ### `yarn start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Avvia l'App in modalità sviluppatore.\
+Apri [http://localhost:3000](http://localhost:3000) per vedere l'app nel tuo Browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+La pagina si aggiorna automaticamente ad ogni aggiornamento salvato.\
+Potresti anche vedere eventuali errori nella console.
 
 ### `yarn test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Avvia il test runner nella modalità orologio interattivo.\
+Guarda la sezione al riguardo [running tests](https://facebook.github.io/create-react-app/docs/running-tests) per maggiori informazioni.
 
 ### `yarn build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Builds l'App per la produzione nella cartella `build`.\
+Ottimizza la build e raggruppa gli script per una prestazione migliore.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+La build viene minimizzata e i nomi dei file includono gli hash.\
+La tua app è pronta per essere distribuita!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Guarda la sezione al riguardo [deployment](https://facebook.github.io/create-react-app/docs/deployment) per maggiori informazioni.
 
 ### `yarn eject`
 
