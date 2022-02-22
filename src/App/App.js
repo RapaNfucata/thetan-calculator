@@ -35,7 +35,7 @@ function App() {
 <div style={{
   padding: "0 20px"
 }}>
-        <h5 style={{ textAlign: "center" }}>Vai sul <a rel="noreferrer" target="_blank" href="https://marketplace.thetanarena.com/">marketplace di Thetan Arena</a>, scegli un personaggio, copia il link e incollalo qui e poi premi enter oppure "calcola"</h5>
+        <h5 style={{ textAlign: "center", margin: 0 }}>Vai sul <a rel="noreferrer" target="_blank" href="https://marketplace.thetanarena.com/">marketplace di Thetan Arena</a>, scegli un personaggio, copia il link e incollalo qui e poi premi enter oppure "calcola"</h5>
 
 </div>
 
