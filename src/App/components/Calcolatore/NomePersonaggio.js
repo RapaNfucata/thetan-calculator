@@ -1,41 +1,40 @@
 function NomePersonaggio(props) {
   const hero = props.dataHero;
   let statoPersonaggio = "";
-  if(hero) {
-    if(hero.sale) {
-      // se il personaggio è in vendita
-      if(hero.rentInfo) {
-        // se il personaggio è in affitto
-        statoPersonaggio = "(Affittare)"
-  
-      } else {
-        if(hero.lastPrice) {
-          // se il personaggio è stato aquistato
-          statoPersonaggio = "(Comprato)"
-        } else {
-          statoPersonaggio = "(Comprare)"
-        }
-      }
-    } else {
-      if(hero.lastPrice) {
+
+  if (hero) {
+    console.log(hero.status);
+    switch (hero.status) {
+      case 3:
         // se il personaggio è stato aquistato
-        statoPersonaggio = "(Comprato)"
-      } else {
-        // se l'hai trovato in una box
-        switch (hero.heroInfo.rarity) {
-          case 0:
-            statoPersonaggio = "(Box Comune)"
-            break;
-          case 1:
-            statoPersonaggio = "(Box Epica)"
-            break;
-          default:
-            statoPersonaggio = "(Box Leggendaria)"
-        }
+        statoPersonaggio = "(Comprato)";
+        break;
+      case 10:
+        // se il personaggio è sul mercato
+        statoPersonaggio = "(Comprare)";
+        break;
+      case 11:
+        // se il personaggio è in affitto
+        statoPersonaggio = "(Affittare)";
+
+      default:
+        statoPersonaggio = "";
+    }
+    if (!hero.sale) {
+      // se l'hai trovato in una box
+      switch (hero.heroInfo.rarity) {
+        case 0:
+          statoPersonaggio = "(Box Comune)";
+          break;
+        case 1:
+          statoPersonaggio = "(Box Epica)";
+          break;
+        default:
+          statoPersonaggio = "(Box Leggendaria)";
       }
-    } 
+    }
   }
-  
+
   return (
     <div className="mainLayout alignEnd flexCenter marginTop10 column">
       <div className="avatar">

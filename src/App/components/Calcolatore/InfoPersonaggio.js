@@ -7,52 +7,54 @@ function InfoPersonaggio(props) {
   let battaglieTotali = 0;
   let battaglieBruciate = 0;
   if (hero) {
-    battaglieTotali = hero.heroRanking.totalBattleCapTHC
-    battaglieBruciate = hero.heroRanking.battleCapTHC
-    if (hero.sale) {
-      if (hero.rentInfo) {
-        // se il personaggio è in affitto
-        costoHero = hero.rentInfo.cost.value / 100000000
-        battaglieTotali = hero.rentInfo.rentBattles
-        battaglieBruciate = 0
-      } else {
+    battaglieTotali = hero.heroRanking.totalBattleCapTHC;
+    battaglieBruciate = hero.heroRanking.battleCapTHC;
+    console.log(hero.status);
+    switch (hero.status) {
+      case 3:
+        // se il personaggio è stato aquistato
         if (hero.lastPrice) {
-          // Se il personaggio è comprato
-          costoHero = hero.lastPrice.value / 100000000
+          // comprato dal market
+          costoHero = hero.lastPrice.value / 100000000;
         } else {
-          // Se il personaggio è in vendita
-          costoHero = hero.sale.price.value / 100000000
-        }
-      }
-    } else {
-      // se il personaggio è stato comprato
-      if (hero.lastPrice) {
-        costoHero = hero.lastPrice.value / 100000000
-      } else {
-        // SE IL PERSONAGGIO è STATO TROVATO IN UNA BOX
-        let rarity = 1000;
-        switch (hero.heroInfo.rarity) {
-          case 0:
-            rarity = 1000;
-            break;
-          case 1:
-            rarity = 2200;
-            break;
+          // trovato nella box
+          let rarity = 1000;
+          switch (hero.heroInfo.rarity) {
+            case 0:
+              rarity = 1000;
+              break;
+            case 1:
+              rarity = 2200;
+              break;
             // la box leggendaria non può essere calcolata perché il prezzo è variabile
-          default:
-            rarity = 0;
+            default:
+              rarity = 0;
+          }
+          costoHero = rarity;
         }
-        costoHero = rarity
-      }
+        break;
+      case 10:
+        // se il personaggio è sul mercato
+        costoHero = hero.sale.price.value / 100000000;
+        break;
+      case 11:
+        // se il personaggio è in affitto
+        costoHero = hero.rentInfo.cost.value / 100000000;
+        battaglieTotali = hero.rentInfo.rentBattles;
+        battaglieBruciate = 0;
+        break;
+
+      default:
+        costoHero = 0;
     }
+
+    console.log(costoHero)
+
     info = [
       {
         value: costoHero,
         name: "Costo",
-        usd: (
-          (costoHero) *
-          props.prezzoTHC
-        ).toFixed(2),
+        usd: (costoHero * props.prezzoTHC).toFixed(2),
       },
       {
         value: battaglieTotali,
@@ -63,6 +65,14 @@ function InfoPersonaggio(props) {
         name: "Battaglie Bruciate",
       },
       {
+        value: battaglieTotali - battaglieBruciate,
+        name: "Battaglie Rimanenti",
+      },
+      {
+        value: (costoHero / (6 + hero.thcBonus)).toFixed(0),
+        name: "Vittorie Necessarie per recuperare l'investimento",
+      },
+      {
         value: hero.dailyTHCBattleConfig,
         name: "Daily Battles",
       },
@@ -71,6 +81,11 @@ function InfoPersonaggio(props) {
         name: "Bonus THC",
         usd: (hero.thcBonus * props.prezzoTHC).toFixed(2),
       },
+      {
+        value: 6,
+        name: "THC per vittoria",
+        usd: (6 * props.prezzoTHC).toFixed(2),
+      }
     ];
   }
   return (

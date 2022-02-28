@@ -63,60 +63,58 @@ function Guadagni(props) {
     let battaglieRimanenti = 0;
     let prezzoHero = 0;
 
-    if (hero.sale) {
-      // se il personaggio è in vendita
-      if (hero.rentInfo) {
-        // se il personaggio è in affitto
-        prezzoHero = hero.rentInfo.cost.value / 100000000;
-        battaglieRimanenti = hero.rentInfo.rentBattles;
-      } else {
+    switch (hero.status) {
+      case 3:
+        // se il personaggio è stato aquistato
         if (hero.lastPrice) {
-          // se il personaggio è stato aquistato
+          // comprato dal market
           prezzoHero = hero.lastPrice.value / 100000000;
           battaglieRimanenti =
             hero.heroRanking.totalBattleCapTHC - hero.heroRanking.battleCapTHC;
-          console.log("COMPRATO " + hero.lastPrice.value);
         } else {
-          prezzoHero = hero.sale.price.value / 100000000;
-          battaglieRimanenti =
+          // trovato nella box
+          let rarity = 1000;
+          switch (hero.heroInfo.rarity) {
+            case 0:
+              rarity = 1000;
+              break;
+            case 1:
+              rarity = 2200;
+              break;
+            // la box leggendaria non può essere calcolata perché il prezzo è variabile
+            default:
+              rarity = 0;
+          }
+          prezzoHero = rarity;
+        }
+        break;
+      case 10:
+        // se il personaggio è sul mercato
+        prezzoHero = hero.sale.price.value / 100000000;
+        battaglieRimanenti =
             hero.heroRanking.totalBattleCapTHC - hero.heroRanking.battleCapTHC;
-        }
-      }
-    } else {
-      if (hero.lastPrice) {
-        // se il personaggio è stato aquistato
-        prezzoHero = hero.lastPrice.value / 100000000;
-        battaglieRimanenti =
-          hero.heroRanking.totalBattleCapTHC - hero.heroRanking.battleCapTHC;
-      } else {
-        // se l'hai trovato in una box
-        /*         fetch("https://data.thetanarena.com/thetan/v1/thetanbox/dashboard")
-          .then((response) => response.json())
-          .then((data) => console.log(data.data)); */
-        switch (hero.heroInfo.rarity) {
-          case 0:
-            prezzoHero = 1000;
-            break;
-          case 1:
-            prezzoHero = 2200;
-            break;
-          default:
-            prezzoHero = 0;
-        }
-        battaglieRimanenti =
-          hero.heroRanking.totalBattleCapTHC - hero.heroRanking.battleCapTHC;
-      }
+        break;
+      case 11:
+        // se il personaggio è in affitto
+        prezzoHero = hero.rentInfo.cost.value / 100000000;
+        battaglieRimanenti = hero.rentInfo.rentBattles;
+        break;
+
+      default:
+        prezzoHero = 0;
     }
 
     const battaglieRimanentiCalcolo = battaglieRimanenti * percentage;
     const battagliePerse = battaglieRimanenti - battaglieRimanentiCalcolo;
 
-    console.log(battagliePerse);
+
+    console.log(prezzoHero);
     const guadagnoPotenziale = roundNumber(
       (hero.thcBonus + 6) * battaglieRimanentiCalcolo + battagliePerse
     );
+    
     const profittoPotenziale = roundNumber(
-      (guadagnoPotenziale - prezzoHero) * percentage
+      (guadagnoPotenziale - prezzoHero)
     );
     const daily = roundNumber(
       (hero.thcBonus + 6) * (hero.dailyTHCBattleConfig * percentage)

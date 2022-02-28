@@ -11,6 +11,32 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+.flexLayout {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.flexEnd {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+}
+
+.fullWidth {
+  width: 100%
+}
+
+.containerDeiFiltri {
+  height: 0;
+  overflow: hidden;
+  transition: height .7s ease-in-out
+}
+.attivo {
+  height: 290px;
+}
+
 .mainContainer {
   position: relative;
   width: 100vw;
@@ -137,7 +163,7 @@ body {
   padding-left: 5px;
   padding-right: 50px;
 
-  width: calc(100% - 55px);
+  width: 100%;
 
   max-width: 148px;
   
@@ -379,8 +405,62 @@ input:checked + .slider:before {
 
   font-weight: bold;
 }
+.buttonTwo {
+  border: none;
+  
+  padding: 10px;
+
+  font-size: 20px;
+
+  border-radius: 0.34em;
+  clip-path: polygon(3% 0, 97% 0, 100% 25%, 97% 100%, 3% 100%, 0 75%);
+  cursor: pointer;
+
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+
+  background-color: #fbba16;
+
+
+  color: black;
+
+  font-weight: bold;
+}
+.buttonTre {
+  border: none;
+  
+  padding: 10px;
+
+  font-size: 15px;
+
+  border-radius: 0.34em;
+  clip-path: polygon(3% 0, 97% 0, 100% 25%, 97% 100%, 3% 100%, 0 75%);
+  cursor: pointer;
+
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+
+  background-color: #fbba16;
+
+
+  color: black;
+
+  font-weight: bold;
+  margin: 5px
+}
 
 
 a {
   color: #2290FF
+}
+
+.experimentalDiv {
+  margin-top: 30px;
+}
+
+.back {
+  height: 40px;
+  width: 40px;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  align-self: flex-end;
 }
