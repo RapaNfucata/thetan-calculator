@@ -49,6 +49,7 @@ function InfoPersonaggio(props) {
     }
 
     console.log(costoHero)
+    let battaglieRim = battaglieTotali - battaglieBruciate;
 
     info = [
       {
@@ -65,11 +66,12 @@ function InfoPersonaggio(props) {
         name: "Battaglie Bruciate",
       },
       {
-        value: battaglieTotali - battaglieBruciate,
+        value: battaglieRim,
         name: "Battaglie Rimanenti",
       },
       {
         value: (costoHero / (6 + hero.thcBonus)).toFixed(0),
+        percentage: (((costoHero / (6 + hero.thcBonus)).toFixed(0) * 100) / battaglieRim).toFixed(0),
         name: "Vittorie Necessarie per recuperare l'investimento",
       },
       {
@@ -104,7 +106,7 @@ function InfoPersonaggio(props) {
               <div className="resultLabel">
                 <div className="guadagnoLabel">
                   <h3 id="profittoPotenziale">
-                    {data.value} {data.usd && " THC"}
+                    {data.value} {data.usd && " THC"} {data.percentage && <span style={{color: data.percentage < 50 ? "#0dc900" : "#d80000"}}>{' (' + data.percentage + '%)'}</span>}
                   </h3>
                   {data.usd && (
                     <div className="usd" id="profittoPotenzialeUSD">

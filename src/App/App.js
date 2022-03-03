@@ -68,6 +68,7 @@ function App() {
       <Route path="market" element={<Market thcPrice={thcPrice} />}>
       </Route>
         <Route path=":heroId" element={<Calcolatore prezzoTHC={thcPrice} coin={coin} />} />
+      
     </Routes>
   );
 }

@@ -34,7 +34,7 @@ body {
   transition: height .7s ease-in-out
 }
 .attivo {
-  height: 290px;
+  height: 380px;
 }
 
 .mainContainer {

@@ -69,8 +69,6 @@ function Guadagni(props) {
         if (hero.lastPrice) {
           // comprato dal market
           prezzoHero = hero.lastPrice.value / 100000000;
-          battaglieRimanenti =
-            hero.heroRanking.totalBattleCapTHC - hero.heroRanking.battleCapTHC;
         } else {
           // trovato nella box
           let rarity = 1000;
@@ -87,6 +85,8 @@ function Guadagni(props) {
           }
           prezzoHero = rarity;
         }
+        battaglieRimanenti =
+            hero.heroRanking.totalBattleCapTHC - hero.heroRanking.battleCapTHC;
         break;
       case 10:
         // se il personaggio è sul mercato

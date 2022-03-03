@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./hero.css";
 import back from "../../images/back.png";
+import HeroList from "./HeroList";
 
 function HeroDiv(data) {
   let naviga = useNavigate();
@@ -137,6 +138,7 @@ function Market(props) {
   const [hero, setHero] = useState([]);
   const [open, setOpen] = useState("");
   const [urlRarity, setRarity] = useState(3);
+  const [listaEroi, apriListaEroi] = useState(false);
   let naviga = useNavigate();
   const urlBase = "https://data.thetanarena.com/thetan/v1/nif/search?sort=";
   const chepestItem = urlBase + "PPB&batPercentMin=60&from=0&size=30";
@@ -150,19 +152,21 @@ function Market(props) {
     cercaHero(chepestItem);
   }, []);
 
-  function cercaHero(url, state, rarity) {
-    console.log(urlRarity)
-    if(urlRarity !== rarity && rarity !== undefined) {
+  function cercaHero(url, state, rarity, heroId) {
+    console.log(urlRarity);
+    if (urlRarity !== rarity && rarity !== undefined) {
       setRarity(rarity);
     }
-    
+
     if (state !== undefined) {
       setSearch(state);
     }
     if (rarity !== 3 && rarity !== undefined) {
       url = url + "&heroRarity=" + rarity;
     }
-    
+    if(heroId !== null && heroId !== undefined) {
+      url = url + "&heroTypeIds=" + heroId
+    } 
 
     fetch(url)
       .then((response) => response.json())
@@ -190,6 +194,21 @@ function Market(props) {
         cercaHero(chepestItem, undefined, rarity);
     }
   }
+  function clickHero(id) {
+    console.log(id)
+    apriListaEroi(!listaEroi)
+    switch (stateOfSearch) {
+      case 1:
+        cercaHero(starterPack, undefined, undefined, id);
+        openDiv(false)
+        //rarityButton(3)
+        break;
+      default:
+        cercaHero(chepestItem, undefined, undefined, id);
+        openDiv(false)
+        //rarityButton(3)
+    }
+  }
   return (
     <div>
       <h1 style={{ textAlign: "center" }}>Experimetal Market</h1>
@@ -208,11 +227,25 @@ function Market(props) {
             onClick={() => naviga("/")}
           ></div>
         </div>
+        <div className={"filtraPerEroeContainer " + (listaEroi ? "apriListaEroi" : "")}>
+          <HeroList open={listaEroi} chiudiLista={() => apriListaEroi(!listaEroi)} back={back} clickHero={(id) => clickHero(id)}/>
+        </div>
         <div className="flexLayout column">
           <div className={"containerDeiFiltri" + open}>
-            
+            <button
+              style={{
+                backgroundColor: stateOfSearch === 1 ? "#fbba16" : "#2290FF",
+              }}
+              onClick={() => apriListaEroi(!listaEroi)}
+              className="buttonTwo fullWidth marginTop30"
+            >
+              Scegli Eroe
+            </button>
             <div className="">
-            <h3 style={{textAlign: 'center'}}>Scegli la rarità dell'eroe</h3>
+              <h3 style={{ textAlign: "center" }}>
+                Scegli la rarità dell'eroe
+              </h3>
+
               <span className="flexLayout">
                 <button
                   style={{
@@ -251,7 +284,9 @@ function Market(props) {
                   Tutti
                 </button>
               </span>
-              <h3 style={{textAlign: 'center'}}>Scegli rapporto partite/prezzo</h3>
+              <h3 style={{ textAlign: "center" }}>
+                Scegli rapporto partite/prezzo
+              </h3>
               <button
                 style={{
                   backgroundColor: stateOfSearch === 1 ? "#fbba16" : "#2290FF",
@@ -270,18 +305,18 @@ function Market(props) {
               >
                 Miglior Prezzo X Battaglie
               </button>
-
             </div>
           </div>
         </div>
       </div>
       <div className="heroContainer">
-        {hero.lenght !== 0 ?
-          hero.map((data, index) => {
-            return (
-              <HeroDiv thcPrice={props.thcPrice} data={data} key={index} />
-            );
-          }) : "Mi spiace ma non è stato trovato nessun Eroe"}
+        {hero.lenght !== 0
+          ? hero.map((data, index) => {
+              return (
+                <HeroDiv thcPrice={props.thcPrice} data={data} key={index} />
+              );
+            })
+          : "Mi spiace ma non è stato trovato nessun Eroe"}
       </div>
     </div>
   );
