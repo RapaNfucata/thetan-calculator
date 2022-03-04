@@ -5,6 +5,7 @@ import InfoPersonaggio from "./InfoPersonaggio";
 import NomePersonaggio from "./NomePersonaggio";
 import back from "../../images/back.png";
 import cart from "../../images/cart.png";
+import coin from "../../images/coin.png";
 
 function Calcolatore(props) {
   const [urlHero, setUrl] = useState("");
@@ -152,14 +153,14 @@ function Calcolatore(props) {
         <div className="calcolatore">
           <NomePersonaggio dataHero={dataHero} />
           <InfoPersonaggio
-            coin={props.coin}
+            coin={coin}
             dataHero={dataHero}
             prezzoTHC={prezzoTHC}
             action={() => alert("azione")}
           />
 
           <Guadagni
-            coin={props.coin}
+            coin={coin}
             prezzoTHC={prezzoTHC}
             dataHero={dataHero}
           />

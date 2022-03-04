@@ -230,6 +230,7 @@ function Market(props) {
             heroId={heroId}
             open={calcolatoreHandler}
             chiudiLista={() => apriCalcolatore(!calcolatoreHandler)}
+            prezzoTHC={props.thcPrice}
           />
         )}
       </div>
