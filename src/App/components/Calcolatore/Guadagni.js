@@ -108,7 +108,7 @@ function Guadagni(props) {
     const battagliePerse = battaglieRimanenti - battaglieRimanentiCalcolo;
 
 
-    console.log(prezzoHero);
+    //console.log(prezzoHero);
     const guadagnoPotenziale = roundNumber(
       (hero.thcBonus + 6) * battaglieRimanentiCalcolo + battagliePerse
     );

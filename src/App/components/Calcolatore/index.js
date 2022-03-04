@@ -61,7 +61,7 @@ function Calcolatore(props) {
         fetch(URL)
           .then((response) => response.json())
           .then((data) => {
-            console.log(data.data);
+            //console.log(data.data);
 
             setDataHero(data.data);
             inputURL.current.blur();

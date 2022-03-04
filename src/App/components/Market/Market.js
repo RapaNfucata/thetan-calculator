@@ -68,8 +68,6 @@ function HeroDiv(data) {
   const priceUSD = (price * data.thcPrice).toFixed(2);
 
   function getHeroLink() {
-    //console.log(infoHero);
-    //naviga(`/${infoHero.refId}`);
     data.getId(infoHero.refId);
   }
 
@@ -157,7 +155,7 @@ function Market(props) {
 
   function cercaHero(url, state, rarity, heroId) {
     setHero([])
-    console.log(urlRarity);
+    //console.log(urlRarity);
     if (urlRarity !== rarity && rarity !== undefined) {
       setRarity(rarity);
     }
@@ -175,7 +173,7 @@ function Market(props) {
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data.page.total / 30);
+        //console.log(data.page.total / 30);
         setHero(data.data);
       });
   }
@@ -199,7 +197,7 @@ function Market(props) {
     }
   }
   function clickHero(id) {
-    console.log(id);
+    //console.log(id);
     apriListaEroi(!listaEroi);
     switch (stateOfSearch) {
       case 1:
@@ -214,7 +212,7 @@ function Market(props) {
     }
   }
   function getId(id) {
-    console.log(id);
+    //console.log(id);
     setId(id);
 
     apriCalcolatore(!calcolatoreHandler);

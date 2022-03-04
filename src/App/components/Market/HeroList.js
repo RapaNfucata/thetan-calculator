@@ -12,7 +12,7 @@ function HeroList(props) {
 
         setHeros(heroArray);
       });
-    console.log(heros);
+    //console.log(heros);
   }, []);
 
   return (

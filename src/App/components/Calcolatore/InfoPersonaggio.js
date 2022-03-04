@@ -9,7 +9,7 @@ function InfoPersonaggio(props) {
   if (hero) {
     battaglieTotali = hero.heroRanking.totalBattleCapTHC;
     battaglieBruciate = hero.heroRanking.battleCapTHC;
-    console.log(hero.status);
+    //console.log(hero.status);
     switch (hero.status) {
       case 3:
         // se il personaggio è stato aquistato
@@ -48,7 +48,7 @@ function InfoPersonaggio(props) {
         costoHero = 0;
     }
 
-    console.log(costoHero)
+    //console.log(costoHero)
     let battaglieRim = battaglieTotali - battaglieBruciate;
 
     info = [

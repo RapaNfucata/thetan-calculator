@@ -3,7 +3,7 @@ function NomePersonaggio(props) {
   let statoPersonaggio = "";
 
   if (hero) {
-    console.log(hero.status);
+    //console.log(hero.status);
     switch (hero.status) {
       case 3:
         // se il personaggio è stato aquistato
