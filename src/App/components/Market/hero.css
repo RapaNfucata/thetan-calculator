@@ -145,7 +145,8 @@
   top: 0;
   left: -100%;
 
-  overflow-x: scroll;
+  overflow-x: hidden;
+  overflow-y: scroll;
 
   background-color: #261858;
 
@@ -163,7 +164,8 @@
   top: 0;
   right: -100%;
 
-  overflow-x: scroll;
+  overflow-x: hidden;
+  overflow-y: scroll;
 
   background-color: #261858;
 

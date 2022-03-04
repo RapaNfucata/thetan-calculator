@@ -26,7 +26,7 @@ function Footer() {
   return (
     <div className="footer">
       <div className="footerText">
-        <strong>v 2.1.8</strong>
+        <strong>v 2.1.9</strong>
       </div>
       <div className="footerText">
         Questo è un servizio totalmente gratuito, senza ADs, pubblicità o altro!
