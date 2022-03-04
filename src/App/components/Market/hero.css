@@ -153,7 +153,28 @@
 
   transition: 0.3s ease-in-out;
 }
+.calcolatoreFlutter {
+  position: fixed;
+  width: calc(100vw - 20px);
+  height: calc(100vh - 20px);
+
+  padding: 10px;
+
+  top: 0;
+  right: -100%;
+
+  overflow: scroll;
+
+  background-color: #261858;
+
+  z-index: 999;
+
+  transition: 0.3s ease-in-out;
+}
 
 .apriListaEroi {
   left: 0
+}
+.apriCalcolatore {
+  right: 0
 }

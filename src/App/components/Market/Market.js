@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 import "./hero.css";
 import back from "../../images/back.png";
 import HeroList from "./HeroList";
+import Calcolatore from "../Calcolatore";
 
 function HeroDiv(data) {
-  let naviga = useNavigate();
   const [trophyClass, setTrophy] = useState("H");
   const [rarityBackground, setBackground] = useState(
     "linear-gradient(180deg, rgba(45, 43, 150, 0) 0%, #211ead 54.56%)"
@@ -69,7 +69,8 @@ function HeroDiv(data) {
 
   function getHeroLink() {
     //console.log(infoHero);
-    naviga(`/${infoHero.refId}`);
+    //naviga(`/${infoHero.refId}`);
+    data.getId(infoHero.refId);
   }
 
   return (
@@ -139,6 +140,8 @@ function Market(props) {
   const [open, setOpen] = useState("");
   const [urlRarity, setRarity] = useState(3);
   const [listaEroi, apriListaEroi] = useState(false);
+  const [calcolatoreHandler, apriCalcolatore] = useState(false);
+  const [heroId, setId] = useState(null);
   let naviga = useNavigate();
   const urlBase = "https://data.thetanarena.com/thetan/v1/nif/search?sort=";
   const chepestItem = urlBase + "PPB&batPercentMin=60&from=0&size=30";
@@ -153,6 +156,7 @@ function Market(props) {
   }, []);
 
   function cercaHero(url, state, rarity, heroId) {
+    setHero([])
     console.log(urlRarity);
     if (urlRarity !== rarity && rarity !== undefined) {
       setRarity(rarity);
@@ -164,9 +168,9 @@ function Market(props) {
     if (rarity !== 3 && rarity !== undefined) {
       url = url + "&heroRarity=" + rarity;
     }
-    if(heroId !== null && heroId !== undefined) {
-      url = url + "&heroTypeIds=" + heroId
-    } 
+    if (heroId !== null && heroId !== undefined) {
+      url = url + "&heroTypeIds=" + heroId;
+    }
 
     fetch(url)
       .then((response) => response.json())
@@ -195,24 +199,42 @@ function Market(props) {
     }
   }
   function clickHero(id) {
-    console.log(id)
-    apriListaEroi(!listaEroi)
+    console.log(id);
+    apriListaEroi(!listaEroi);
     switch (stateOfSearch) {
       case 1:
         cercaHero(starterPack, undefined, undefined, id);
-        openDiv(false)
+        openDiv(false);
         //rarityButton(3)
         break;
       default:
         cercaHero(chepestItem, undefined, undefined, id);
-        openDiv(false)
-        //rarityButton(3)
+        openDiv(false);
+      //rarityButton(3)
     }
+  }
+  function getId(id) {
+    console.log(id);
+    setId(id);
+
+    apriCalcolatore(!calcolatoreHandler);
   }
   return (
     <div>
       <h1 style={{ textAlign: "center" }}>Experimetal Market</h1>
-
+      <div
+        className={
+          "calcolatoreFlutter " + (calcolatoreHandler ? "apriCalcolatore" : "")
+        }
+      >
+        {calcolatoreHandler && (
+          <Calcolatore
+            heroId={heroId}
+            open={calcolatoreHandler}
+            chiudiLista={() => apriCalcolatore(!calcolatoreHandler)}
+          />
+        )}
+      </div>
       <div
         style={{ minWidth: 300, margin: "0 auto" }}
         className="mainLayout column flexSpace marginTop30 maxWidth350"
@@ -227,14 +249,24 @@ function Market(props) {
             onClick={() => naviga("/")}
           ></div>
         </div>
-        <div className={"filtraPerEroeContainer " + (listaEroi ? "apriListaEroi" : "")}>
-          <HeroList open={listaEroi} chiudiLista={() => apriListaEroi(!listaEroi)} back={back} clickHero={(id) => clickHero(id)}/>
+        <div
+          className={
+            "filtraPerEroeContainer " + (listaEroi ? "apriListaEroi" : "")
+          }
+        >
+          <HeroList
+            open={listaEroi}
+            chiudiLista={() => apriListaEroi(!listaEroi)}
+            back={back}
+            clickHero={(id) => clickHero(id)}
+          />
         </div>
+
         <div className="flexLayout column">
           <div className={"containerDeiFiltri" + open}>
             <button
               style={{
-                backgroundColor: stateOfSearch === 1 ? "#fbba16" : "#2290FF",
+                backgroundColor: "#2290FF",
               }}
               onClick={() => apriListaEroi(!listaEroi)}
               className="buttonTwo fullWidth marginTop30"
@@ -313,7 +345,12 @@ function Market(props) {
         {hero.lenght !== 0
           ? hero.map((data, index) => {
               return (
-                <HeroDiv thcPrice={props.thcPrice} data={data} key={index} />
+                <HeroDiv
+                  getId={(id) => getId(id)}
+                  thcPrice={props.thcPrice}
+                  data={data}
+                  key={index}
+                />
               );
             })
           : "Mi spiace ma non è stato trovato nessun Eroe"}
